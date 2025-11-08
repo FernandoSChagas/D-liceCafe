@@ -17,7 +17,7 @@
             --cor-acento-verde: #C27933;   
             --cor-acento-marrom: #7D3F0F;  
             --cor-fundo-claro: #F8F8F8;    
-            --cor-secundaria: #FFFFFF;     
+            --cor-secundaria: rgba(255, 255, 255, 0.95); 
             --cor-texto-claro: #FFFFFF;
             --cor-whats: #25D366; 
         }
@@ -38,7 +38,7 @@
             font-size: 16px;
             overflow-x: hidden;
 
-            /* BACKGROUND COM OPACIDADE - Caminho corrigido */
+            /* BACKGROUND COM OPACIDADE - Caminho corrigido para a raiz */
             background-image: linear-gradient(
                 rgba(248, 248, 248, 0.5), 
                 rgba(248, 248, 248, 0.5)
@@ -56,7 +56,7 @@
             padding: 0 20px;
         }
         
-        /* HEADER - AGORA NA COR DO RODAPÉ */
+        /* HEADER (AGORA NA COR DO RODAPÉ) */
         .header {
             position: fixed;
             top: 0;
@@ -69,7 +69,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s; /* Adicionado para responsividade do padding */
+            transition: all 0.3s;
         }
 
         .logo-text {
@@ -107,10 +107,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.02); 
         }
         
-        /* Fundo da Galeria */
+        /* Fundo da Galeria - AGORA IGUAL AO 'SOBRE' */
         #delicias {
             padding-top: 100px; 
-            background-color: var(--cor-fundo-claro); 
+            background-color: var(--cor-secundaria); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.02); 
         }
         
         /* Título Principal */
@@ -120,6 +121,7 @@
             color: var(--cor-primaria-foco);
             margin-bottom: 50px;
             position: relative;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
         }
         .section-title::after {
             content: '';
@@ -145,11 +147,13 @@
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 30px; 
             margin-top: 20px;
+            justify-content: center; 
         }
-        /* Ajuste do grid para mobile - permite 2 colunas */
+
         @media (max-width: 600px) {
              .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                /* Força 2 colunas no celular */
+                grid-template-columns: repeat(2, 1fr); 
                 gap: 15px;
             }
             .gallery-item img {
@@ -160,17 +164,38 @@
 
 
         .gallery-item {
-            padding: 10px;
+            padding: 15px; 
+            background-color: var(--cor-fundo-claro); 
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
             transition: transform 0.3s ease, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .gallery-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+
         .gallery-item img {
             width: 180px; 
             height: 180px;
             border-radius: 50%;
             border: 4px solid var(--cor-acento-verde); 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
+            margin-bottom: 0; 
         }
+        
+        .gallery-item span {
+            text-shadow: none; 
+            font-weight: 500;
+            color: var(--cor-primaria-foco);
+            margin-top: 5px; 
+        }
+
 
         .whatsapp-button {
             display: inline-flex;
@@ -245,6 +270,7 @@
             font-size: 1.6rem;
             color: var(--cor-acento-verde);
             margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
         }
         .about-text p {
             font-size: 0.9rem;
@@ -346,15 +372,15 @@
             .header {
                 flex-direction: column;
                 padding: 10px 20px;
-                height: auto; /* Permite que o header cresça */
+                height: auto; 
             }
             .nav ul {
                 margin-top: 5px;
                 padding-bottom: 5px;
-                justify-content: center; /* Centraliza links */
+                justify-content: center; 
             }
             .nav ul li a {
-                padding: 5px 10px; /* Reduz padding dos links */
+                padding: 5px 10px; 
             }
 
             /* ABOUT: Empilha imagem e texto */
@@ -375,7 +401,6 @@
                 align-items: center;
                 margin-bottom: 15px;
                 text-align: center;
-                /* Garante que ambos os blocos se empilhem */
                 flex-direction: column;
             }
              
