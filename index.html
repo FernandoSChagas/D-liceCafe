@@ -13,17 +13,13 @@
     <style>
         /* Variáveis de Cores (ESTÉTICA CAFÉ/MARROM ATUALIZADA) */
         :root {
-            /* Sela Marrom - Para texto principal e detalhes escuros */
             --cor-primaria-foco: #74330B;  
-            /* Cobre Castanho - Para acentos, links e linhas de destaque */
             --cor-acento-verde: #C27933;   
-            /* Café Royale - Para texto secundário e acentos mais escuros */
             --cor-acento-marrom: #7D3F0F;  
-            /* Manter Fundo Quase Branco para contraste */
             --cor-fundo-claro: #F8F8F8;    
             --cor-secundaria: #FFFFFF;     
             --cor-texto-claro: #FFFFFF;
-            --cor-whats: #25D366; /* Mantido verde do WhatsApp por padrão */
+            --cor-whats: #25D366; 
         }
 
         * {
@@ -60,13 +56,12 @@
             padding: 0 20px;
         }
         
-        /* HEADER (AGORA NA COR DO RODAPÉ) */
+        /* HEADER - AGORA NA COR DO RODAPÉ */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            /* NOVO: Usa a cor escura do rodapé */
             background-color: var(--cor-primaria-foco); 
             box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
@@ -74,12 +69,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s; /* Adicionado para responsividade do padding */
         }
 
         .logo-text {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
-            /* NOVO: Texto branco */
             color: var(--cor-texto-claro); 
             font-weight: 700;
             text-decoration: none;
@@ -91,7 +86,6 @@
         }
         .nav ul li a {
             text-decoration: none;
-            /* NOVO: Links brancos */
             color: var(--cor-texto-claro); 
             font-size: 0.95rem;
             font-weight: 500;
@@ -99,7 +93,6 @@
             transition: color 0.3s ease, border-bottom 0.3s;
         }
         .nav ul li a:hover {
-            /* MANTIDO: O acento cobre/castanho para o hover */
             color: var(--cor-acento-verde); 
             border-bottom: 2px solid var(--cor-acento-verde);
         }
@@ -136,7 +129,6 @@
             transform: translateX(-50%);
             width: 50px;
             height: 3px;
-            /* Usando --cor-acento-verde (Cobre Castanho) */
             background-color: var(--cor-acento-verde); 
             border-radius: 2px;
         }
@@ -145,7 +137,6 @@
         .gallery-text-intro {
             font-size: 1rem; 
             margin-bottom: 40px;
-            /* Usando --cor-acento-marrom (Café Royale) */
             color: var(--cor-acento-marrom); 
         }
 
@@ -155,6 +146,18 @@
             gap: 30px; 
             margin-top: 20px;
         }
+        /* Ajuste do grid para mobile - permite 2 colunas */
+        @media (max-width: 600px) {
+             .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 15px;
+            }
+            .gallery-item img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
 
         .gallery-item {
             padding: 10px;
@@ -164,7 +167,6 @@
             width: 180px; 
             height: 180px;
             border-radius: 50%;
-            /* Usando --cor-acento-verde (Cobre Castanho) para a borda */
             border: 4px solid var(--cor-acento-verde); 
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 15px;
@@ -235,14 +237,12 @@
             width: 160px; 
             height: 160px;
             border-radius: 50%; 
-            /* Usando --cor-acento-marrom (Café Royale) para a borda */
             border: 3px solid var(--cor-acento-marrom);
         }
         
         .about-text h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
-            /* Usando --cor-acento-verde (Cobre Castanho) para o título interno */
             color: var(--cor-acento-verde);
             margin-bottom: 10px;
         }
@@ -315,7 +315,6 @@
             font-weight: 600;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             animation: none; 
-            /* Ajuste de altura para alinhar com ícones */
             height: 30px; 
             line-height: 12px;
         }
@@ -340,8 +339,32 @@
             margin: 10px auto 0;
         }
         
-        /* RESPONSIVIDADE DO RODAPÉ */
+        /* RESPONSIVIDADE (REFINADA) */
         @media (max-width: 768px) {
+            
+            /* HEADER: Empilha elementos e ajusta padding */
+            .header {
+                flex-direction: column;
+                padding: 10px 20px;
+                height: auto; /* Permite que o header cresça */
+            }
+            .nav ul {
+                margin-top: 5px;
+                padding-bottom: 5px;
+                justify-content: center; /* Centraliza links */
+            }
+            .nav ul li a {
+                padding: 5px 10px; /* Reduz padding dos links */
+            }
+
+            /* ABOUT: Empilha imagem e texto */
+            .about-content {
+                flex-direction: column; 
+                text-align: center;
+                gap: 20px;
+            }
+
+            /* RODAPÉ: Empilha e centraliza */
             .footer-main-content {
                 flex-direction: column;
                 align-items: center;
@@ -352,15 +375,16 @@
                 align-items: center;
                 margin-bottom: 15px;
                 text-align: center;
-                /* Volta para empilhamento vertical para caber na tela pequena */
+                /* Garante que ambos os blocos se empilhem */
                 flex-direction: column;
             }
-             /* Garante centralização do bloco de links e botão */
+             
+            /* Alinhamento dos links e botão no rodapé para centralizar */
             .footer-right {
                 flex-direction: column;
                 gap: 10px;
             }
-            /* Faz o botão do WhatsApp do rodapé voltar para o tamanho grande em mobile */
+            /* Volta o botão principal do rodapé para o tamanho normal/maior para mobile */
             .footer-right .whatsapp-button {
                 height: auto;
                 line-height: normal;
@@ -375,10 +399,6 @@
             }
             .copy {
                 text-align: center; 
-            }
-            .about-content {
-                flex-direction: column; 
-                text-align: center;
             }
         }
     </style>
@@ -438,7 +458,7 @@
             </div>
             
             <a href="https://wa.me/554797414816" target="_blank" class="whatsapp-button">
-                <i class="whatsapp-icon fas fa-shopping-basket"></i>  PEÇA SEU ORÇAMENTO EXCLUSIVO
+                <i class="whatsapp-icon fas fa-shopping-basket"></i> PEÇA SEU ORÇAMENTO EXCLUSIVO
             </a>
         </div>
     </section>
@@ -507,5 +527,3 @@
     </script>
 </body>
 </html>
-
-
